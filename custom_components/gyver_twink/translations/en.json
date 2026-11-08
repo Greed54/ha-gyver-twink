@@ -1,0 +1,185 @@
+{
+  "config": {
+    "flow_title": "GyverTwink ({host})",
+    "step": {
+      "pick": {
+        "title": "Found garlands",
+        "description": "Choose a garland or «…» to enter an address manually.",
+        "data": {
+          "host": "Garland",
+          "name": "Name"
+        }
+      },
+      "manual": {
+        "title": "Garland address",
+        "description": "No garlands answered the network search. Enter the IP address (port 8888 UDP).",
+        "data": {
+          "host": "IP address",
+          "name": "Name"
+        }
+      },
+      "zeroconf_confirm": {
+        "title": "GyverTwink found",
+        "description": "Add the garland at {host}?",
+        "data": {
+          "name": "Name"
+        }
+      },
+      "reconfigure": {
+        "title": "Change address",
+        "data": {
+          "host": "IP address"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "The garland did not answer. Check that it is powered and on the same network."
+    },
+    "abort": {
+      "already_configured": "This garland is already added",
+      "cannot_connect": "The garland did not answer",
+      "wrong_device": "A different garland answers at this address",
+      "reconfigure_successful": "Address updated"
+    }
+  },
+  "entity": {
+    "light": {
+      "garland": {
+        "state_attributes": {
+          "effect": {
+            "state": {
+              "party_gradient": "Party — gradient",
+              "rainbow_gradient": "Rainbow — gradient",
+              "stripe_gradient": "Rainbow stripes — gradient",
+              "sunset_gradient": "Sunset — gradient",
+              "pepsi_gradient": "Pepsi — gradient",
+              "warm_gradient": "Warm — gradient",
+              "cold_gradient": "Cold — gradient",
+              "hot_gradient": "Hot — gradient",
+              "pink_gradient": "Pink — gradient",
+              "cyber_gradient": "Cyberpunk — gradient",
+              "red_white_gradient": "Red & white — gradient",
+              "party_noise": "Party — noise",
+              "rainbow_noise": "Rainbow — noise",
+              "stripe_noise": "Rainbow stripes — noise",
+              "sunset_noise": "Sunset — noise",
+              "pepsi_noise": "Pepsi — noise",
+              "warm_noise": "Warm — noise",
+              "cold_noise": "Cold — noise",
+              "hot_noise": "Hot — noise",
+              "pink_noise": "Pink — noise",
+              "cyber_noise": "Cyberpunk — noise",
+              "red_white_noise": "Red & white — noise"
+            }
+          }
+        }
+      }
+    },
+    "switch": {
+      "auto_switch": {
+        "name": "Auto switch effects"
+      },
+      "random_order": {
+        "name": "Random order"
+      },
+      "off_timer": {
+        "name": "Off timer"
+      },
+      "effect_favorite": {
+        "name": "Effect in rotation"
+      }
+    },
+    "number": {
+      "switch_period": {
+        "name": "Switch period"
+      },
+      "off_timer_minutes": {
+        "name": "Off timer duration"
+      },
+      "led_count": {
+        "name": "LED count"
+      },
+      "effect_speed": {
+        "name": "Effect speed"
+      },
+      "effect_scale": {
+        "name": "Effect scale"
+      }
+    },
+    "button": {
+      "next_effect": {
+        "name": "Next effect"
+      }
+    }
+  },
+  "exceptions": {
+    "unknown_effect": {
+      "message": "Unknown effect: {effect}"
+    },
+    "not_gyver_twink": {
+      "message": "{entity_id} is not a GyverTwink garland"
+    },
+    "not_loaded": {
+      "message": "{entity_id} is not loaded"
+    },
+    "needs_firmware_13": {
+      "message": "This action needs GyverTwink firmware 1.3 (ha-gyver-twink)"
+    }
+  },
+  "selector": {
+    "effect": {
+      "options": {
+        "party_gradient": "Party — gradient",
+        "rainbow_gradient": "Rainbow — gradient",
+        "stripe_gradient": "Rainbow stripes — gradient",
+        "sunset_gradient": "Sunset — gradient",
+        "pepsi_gradient": "Pepsi — gradient",
+        "warm_gradient": "Warm — gradient",
+        "cold_gradient": "Cold — gradient",
+        "hot_gradient": "Hot — gradient",
+        "pink_gradient": "Pink — gradient",
+        "cyber_gradient": "Cyberpunk — gradient",
+        "red_white_gradient": "Red & white — gradient",
+        "party_noise": "Party — noise",
+        "rainbow_noise": "Rainbow — noise",
+        "stripe_noise": "Rainbow stripes — noise",
+        "sunset_noise": "Sunset — noise",
+        "pepsi_noise": "Pepsi — noise",
+        "warm_noise": "Warm — noise",
+        "cold_noise": "Cold — noise",
+        "hot_noise": "Hot — noise",
+        "pink_noise": "Pink — noise",
+        "cyber_noise": "Cyberpunk — noise",
+        "red_white_noise": "Red & white — noise"
+      }
+    }
+  },
+  "services": {
+    "set_effect_params": {
+      "name": "Set effect parameters",
+      "description": "Change speed, scale or favourite flag of an effect (firmware 1.3).",
+      "fields": {
+        "entity_id": {
+          "name": "Garland",
+          "description": "GyverTwink light."
+        },
+        "effect": {
+          "name": "Effect",
+          "description": "Effect to change. Default: the current one."
+        },
+        "speed": {
+          "name": "Speed",
+          "description": "0–255, 128 is still."
+        },
+        "scale": {
+          "name": "Scale",
+          "description": "0–255."
+        },
+        "favorite": {
+          "name": "In rotation",
+          "description": "Take part in auto switching."
+        }
+      }
+    }
+  }
+}

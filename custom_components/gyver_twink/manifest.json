@@ -1,0 +1,15 @@
+{
+  "domain": "gyver_twink",
+  "name": "GyverTwink",
+  "codeowners": ["@greed54"],
+  "config_flow": true,
+  "dependencies": ["network"],
+  "documentation": "https://github.com/greed54/ha-gyver-twink",
+  "integration_type": "device",
+  "iot_class": "local_push",
+  "issue_tracker": "https://github.com/greed54/ha-gyver-twink/issues",
+  "loggers": ["custom_components.gyver_twink"],
+  "requirements": [],
+  "version": "2.0.0",
+  "zeroconf": ["_gyvertwink._udp.local."]
+}

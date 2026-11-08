@@ -1,0 +1,56 @@
+{
+  "entity": {
+    "light": {
+      "garland": {
+        "default": "mdi:string-lights",
+        "state": {
+          "off": "mdi:string-lights-off"
+        }
+      }
+    },
+    "switch": {
+      "auto_switch": {
+        "default": "mdi:autorenew"
+      },
+      "random_order": {
+        "default": "mdi:shuffle-variant"
+      },
+      "off_timer": {
+        "default": "mdi:timer-outline"
+      },
+      "effect_favorite": {
+        "default": "mdi:star",
+        "state": {
+          "off": "mdi:star-outline"
+        }
+      }
+    },
+    "number": {
+      "switch_period": {
+        "default": "mdi:timer-sync-outline"
+      },
+      "off_timer_minutes": {
+        "default": "mdi:timer-cog-outline"
+      },
+      "led_count": {
+        "default": "mdi:led-strip-variant"
+      },
+      "effect_speed": {
+        "default": "mdi:speedometer"
+      },
+      "effect_scale": {
+        "default": "mdi:arrow-expand-horizontal"
+      }
+    },
+    "button": {
+      "next_effect": {
+        "default": "mdi:skip-next"
+      }
+    }
+  },
+  "services": {
+    "set_effect_params": {
+      "service": "mdi:tune-variant"
+    }
+  }
+}

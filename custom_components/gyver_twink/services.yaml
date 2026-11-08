@@ -1,0 +1,55 @@
+set_effect_params:
+  fields:
+    entity_id:
+      required: true
+      selector:
+        entity:
+          integration: gyver_twink
+          domain: light
+          multiple: true
+    effect:
+      required: false
+      selector:
+        select:
+          translation_key: effect
+          options:
+            - party_gradient
+            - rainbow_gradient
+            - stripe_gradient
+            - sunset_gradient
+            - pepsi_gradient
+            - warm_gradient
+            - cold_gradient
+            - hot_gradient
+            - pink_gradient
+            - cyber_gradient
+            - red_white_gradient
+            - party_noise
+            - rainbow_noise
+            - stripe_noise
+            - sunset_noise
+            - pepsi_noise
+            - warm_noise
+            - cold_noise
+            - hot_noise
+            - pink_noise
+            - cyber_noise
+            - red_white_noise
+    speed:
+      required: false
+      selector:
+        number:
+          min: 0
+          max: 255
+          mode: slider
+    scale:
+      required: false
+      selector:
+        number:
+          min: 0
+          max: 255
+          mode: slider
+    favorite:
+      required: false
+      selector:
+        boolean:

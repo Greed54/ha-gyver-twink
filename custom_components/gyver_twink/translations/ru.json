@@ -1,0 +1,185 @@
+{
+  "config": {
+    "flow_title": "GyverTwink ({host})",
+    "step": {
+      "pick": {
+        "title": "Найденные гирлянды",
+        "description": "Выбери гирлянду или «…», чтобы ввести адрес вручную.",
+        "data": {
+          "host": "Гирлянда",
+          "name": "Название"
+        }
+      },
+      "manual": {
+        "title": "Адрес гирлянды",
+        "description": "Поиск по сети ничего не нашёл. Введи IP-адрес (UDP порт 8888).",
+        "data": {
+          "host": "IP-адрес",
+          "name": "Название"
+        }
+      },
+      "zeroconf_confirm": {
+        "title": "Найдена GyverTwink",
+        "description": "Добавить гирлянду {host}?",
+        "data": {
+          "name": "Название"
+        }
+      },
+      "reconfigure": {
+        "title": "Изменить адрес",
+        "data": {
+          "host": "IP-адрес"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Гирлянда не ответила. Проверь, что она включена и в той же сети."
+    },
+    "abort": {
+      "already_configured": "Эта гирлянда уже добавлена",
+      "cannot_connect": "Гирлянда не ответила",
+      "wrong_device": "По этому адресу отвечает другая гирлянда",
+      "reconfigure_successful": "Адрес обновлён"
+    }
+  },
+  "entity": {
+    "light": {
+      "garland": {
+        "state_attributes": {
+          "effect": {
+            "state": {
+              "party_gradient": "Вечеринка — градиент",
+              "rainbow_gradient": "Радуга — градиент",
+              "stripe_gradient": "Радужные полосы — градиент",
+              "sunset_gradient": "Закат — градиент",
+              "pepsi_gradient": "Пепси — градиент",
+              "warm_gradient": "Тёплый — градиент",
+              "cold_gradient": "Холодный — градиент",
+              "hot_gradient": "Огонь — градиент",
+              "pink_gradient": "Розовый — градиент",
+              "cyber_gradient": "Киберпанк — градиент",
+              "red_white_gradient": "Красно-белый — градиент",
+              "party_noise": "Вечеринка — шум",
+              "rainbow_noise": "Радуга — шум",
+              "stripe_noise": "Радужные полосы — шум",
+              "sunset_noise": "Закат — шум",
+              "pepsi_noise": "Пепси — шум",
+              "warm_noise": "Тёплый — шум",
+              "cold_noise": "Холодный — шум",
+              "hot_noise": "Огонь — шум",
+              "pink_noise": "Розовый — шум",
+              "cyber_noise": "Киберпанк — шум",
+              "red_white_noise": "Красно-белый — шум"
+            }
+          }
+        }
+      }
+    },
+    "switch": {
+      "auto_switch": {
+        "name": "Автосмена эффектов"
+      },
+      "random_order": {
+        "name": "Случайный порядок"
+      },
+      "off_timer": {
+        "name": "Таймер выключения"
+      },
+      "effect_favorite": {
+        "name": "Эффект в карусели"
+      }
+    },
+    "number": {
+      "switch_period": {
+        "name": "Период смены"
+      },
+      "off_timer_minutes": {
+        "name": "Выключить через"
+      },
+      "led_count": {
+        "name": "Количество светодиодов"
+      },
+      "effect_speed": {
+        "name": "Скорость эффекта"
+      },
+      "effect_scale": {
+        "name": "Масштаб эффекта"
+      }
+    },
+    "button": {
+      "next_effect": {
+        "name": "Следующий эффект"
+      }
+    }
+  },
+  "exceptions": {
+    "unknown_effect": {
+      "message": "Неизвестный эффект: {effect}"
+    },
+    "not_gyver_twink": {
+      "message": "{entity_id} — не гирлянда GyverTwink"
+    },
+    "not_loaded": {
+      "message": "{entity_id} не загружена"
+    },
+    "needs_firmware_13": {
+      "message": "Нужна прошивка GyverTwink 1.3 (ha-gyver-twink)"
+    }
+  },
+  "selector": {
+    "effect": {
+      "options": {
+        "party_gradient": "Вечеринка — градиент",
+        "rainbow_gradient": "Радуга — градиент",
+        "stripe_gradient": "Радужные полосы — градиент",
+        "sunset_gradient": "Закат — градиент",
+        "pepsi_gradient": "Пепси — градиент",
+        "warm_gradient": "Тёплый — градиент",
+        "cold_gradient": "Холодный — градиент",
+        "hot_gradient": "Огонь — градиент",
+        "pink_gradient": "Розовый — градиент",
+        "cyber_gradient": "Киберпанк — градиент",
+        "red_white_gradient": "Красно-белый — градиент",
+        "party_noise": "Вечеринка — шум",
+        "rainbow_noise": "Радуга — шум",
+        "stripe_noise": "Радужные полосы — шум",
+        "sunset_noise": "Закат — шум",
+        "pepsi_noise": "Пепси — шум",
+        "warm_noise": "Тёплый — шум",
+        "cold_noise": "Холодный — шум",
+        "hot_noise": "Огонь — шум",
+        "pink_noise": "Розовый — шум",
+        "cyber_noise": "Киберпанк — шум",
+        "red_white_noise": "Красно-белый — шум"
+      }
+    }
+  },
+  "services": {
+    "set_effect_params": {
+      "name": "Параметры эффекта",
+      "description": "Изменить скорость, масштаб или участие эффекта в карусели (прошивка 1.3).",
+      "fields": {
+        "entity_id": {
+          "name": "Гирлянда",
+          "description": "Свет GyverTwink."
+        },
+        "effect": {
+          "name": "Эффект",
+          "description": "Какой эффект менять. По умолчанию — текущий."
+        },
+        "speed": {
+          "name": "Скорость",
+          "description": "0–255, 128 — стоит на месте."
+        },
+        "scale": {
+          "name": "Масштаб",
+          "description": "0–255."
+        },
+        "favorite": {
+          "name": "В карусели",
+          "description": "Участвует в автосмене."
+        }
+      }
+    }
+  }
+}
