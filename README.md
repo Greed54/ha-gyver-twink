@@ -77,7 +77,15 @@ python3 tools/emulator.py --stock  # stock 1.2
 The emulator listens on UDP 8888 and mirrors the firmware logic, including the
 anti-bounce and the stock "no favourites" hang.
 
-## Credits
+## License and credits
 
-Firmware based on [GyverTwink](https://github.com/AlexGyver/GyverTwink) by
-AlexGyver (MIT, see `firmware/LICENSE.GyverTwink`).
+- `custom_components/`, `tools/`, `docs/` — MIT, © greed54 (see `LICENSE`).
+- `firmware/` — based on [GyverTwink](https://github.com/AlexGyver/GyverTwink)
+  by AlexGyver, MIT, © 2021 Alex (see `firmware/LICENSE`). Changes for
+  version 1.3 are listed in the header of `GyverTwink_v1.3.ino`.
+- `firmware/lib/` — [EEManager](https://github.com/GyverLibs/EEManager),
+  [EncButton](https://github.com/GyverLibs/EncButton),
+  [SimplePortal](https://github.com/GyverLibs/SimplePortal) by AlexGyver,
+  MIT, unmodified, each with its own `LICENSE`.
+
+This project is not affiliated with AlexGyver.
