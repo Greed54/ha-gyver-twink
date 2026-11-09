@@ -25,7 +25,8 @@ class GyverTwinkEntity(CoordinatorEntity[GyverTwinkCoordinator]):
             manufacturer="AlexGyver",
             model="GyverTwink",
             sw_version="1.3" if ext else "1.2 (stock)",
-            configuration_url="https://github.com/AlexGyver/GyverTwink",
+            # Device page link opens the setup panel.
+            configuration_url="homeassistant://gyver-twink",
         )
 
     @property

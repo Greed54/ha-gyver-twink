@@ -8,6 +8,10 @@ import logging
 import time
 
 from .protocol import (
+    CALIB_FINISH,
+    CALIB_LED,
+    CALIB_START,
+    CMD_CALIBRATION,
     CMD_DISCOVER,
     CMD_EFFECT_PREVIEW,
     CMD_EXT_INFO,
@@ -17,7 +21,11 @@ from .protocol import (
     CMD_SET_EFFECT_PARAMS,
     CMD_SETTINGS,
     PORT,
+    PREVIEW_FAVORITE,
+    PREVIEW_SCALE,
     PREVIEW_SELECT,
+    PREVIEW_SPEED,
+    SET_LED_COUNT,
     SET_NEXT_EFFECT,
     EffectParams,
     ExtInfo,
@@ -182,6 +190,31 @@ class GyverTwinkClient:
             CMD_EFFECT_PREVIEW, PREVIEW_SELECT, index, reply=CMD_EFFECT_PREVIEW
         )
         return EffectParams.from_payload(bytes([index]) + payload)
+
+    async def set_previewed_effect_params(
+        self, index: int, favorite: bool, scale: int, speed: int
+    ) -> EffectParams:
+        """Stock firmware: write parameters through the 30 s preview."""
+        await self.preview_effect(index)
+        await self.send(CMD_EFFECT_PREVIEW, PREVIEW_FAVORITE, int(favorite))
+        await self.send(CMD_EFFECT_PREVIEW, PREVIEW_SCALE, scale)
+        await self.send(CMD_EFFECT_PREVIEW, PREVIEW_SPEED, speed)
+        return EffectParams(index, favorite, scale, speed)
+
+    async def set_led_count(self, count: int) -> None:
+        await self.send(CMD_SET, SET_LED_COUNT, count // 100, count % 100)
+
+    # Calibration (no replies, the garland just shows the LED)
+
+    async def calibration_start(self) -> None:
+        await self.send(CMD_CALIBRATION, CALIB_START)
+
+    async def calibration_led(self, index: int, x: int, y: int) -> None:
+        """Store x,y for LED index-1 and light LED index."""
+        await self.send(CMD_CALIBRATION, CALIB_LED, index // 100, index % 100, x, y)
+
+    async def calibration_finish(self) -> None:
+        await self.send(CMD_CALIBRATION, CALIB_FINISH)
 
     async def get_effect_params(self, index: int) -> EffectParams:
         payload = await self.request(

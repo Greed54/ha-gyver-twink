@@ -59,6 +59,8 @@ class Garland(asyncio.DatagramProtocol):
         self.turn_off = False
         self.off_tmr = 60
         self.effs = [[1, 50, 150] for _ in range(EFF_AMOUNT)]  # fav, scale, speed
+        self.xy = [[0, 0] for _ in range(LED_MAX)]
+        self.calib = False
         self.cur = 0
         self.force_eff = 0
         self.force_tmr = Timer(30, False)
@@ -190,6 +192,21 @@ class Garland(asyncio.DatagramProtocol):
                 self.off_timer.prd = self.off_tmr * 60
                 if self.turn_off:
                     self.off_timer.restart()
+        elif cmd == 3:
+            if u[1] == 0:
+                self.calib = True
+                log.info("calibration start")
+            elif u[1] == 1:
+                n = u[2] * 100 + u[3]
+                if 0 < n <= LED_MAX:
+                    self.xy[n - 1] = [u[4], u[5]]
+                log.debug("calibration: LED %d on, LED %d at %d,%d", n, n - 1, u[4], u[5])
+            elif u[1] == 2:
+                self.calib = False
+                pts = self.xy[: self.led_am]
+                xs, ys = [p[0] for p in pts], [p[1] for p in pts]
+                log.info("calibration saved: x %d..%d, y %d..%d, first %s",
+                         min(xs), max(xs), min(ys), max(ys), pts[:3])
         elif cmd == 4:
             if u[1] == 0 and u[2] >= EFF_AMOUNT:
                 return

@@ -96,9 +96,6 @@
       "off_timer_minutes": {
         "name": "Выключить через"
       },
-      "led_count": {
-        "name": "Количество светодиодов"
-      },
       "effect_speed": {
         "name": "Скорость эффекта"
       },

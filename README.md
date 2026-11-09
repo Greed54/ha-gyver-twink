@@ -18,6 +18,7 @@ garland with camera calibration by AlexGyver.
 | Current effect shown | — | ✅ |
 | Effect speed / scale / favourite | — | ✅ |
 | Instant updates | polling 15 s | ✅ push |
+| Setup panel: camera calibration, effect editor | ✅ | ✅ |
 | Zeroconf discovery | — | ✅ |
 | OTA updates | — | ✅ |
 
@@ -26,7 +27,7 @@ extended protocol as soon as the garland is reflashed.
 
 ## Installation
 
-1. HACS → ⋮ → *Custom repositories* → `https://github.com/greed54/ha-gyver-twink`, category *Integration*.
+1. Marketplace (HACS) → ⋮ → *Custom repositories* → `https://github.com/Greed54/ha-gyver-twink`, category *Integration*.
 2. Install **GyverTwink**, restart Home Assistant.
 3. *Settings → Devices & services → Add integration → GyverTwink*. The garland
    is found by broadcast; if not, enter its IP.
@@ -37,11 +38,33 @@ extended protocol as soon as the garland is reflashed.
 |---|---|
 | `light` | power, brightness, effect |
 | `switch` | auto switch, random order, off timer, *current effect in rotation* (1.3) |
-| `number` | switch period, off timer minutes, LED count (disabled by default), effect speed / scale (1.3) |
+| `number` | switch period, off timer minutes, effect speed / scale (1.3) |
 | `button` | next effect |
 
 Action `gyver_twink.set_effect_params` changes speed, scale or favourite of any
 effect (firmware 1.3).
+
+## Setup panel
+
+The integration adds a **GyverTwink** panel to the sidebar (also opened by
+*Visit* on the device page). It is for setting the garland up; everyday control
+stays in the entities above.
+
+- **Calibration.** The phone camera watches the tree while the garland lights
+  its LEDs one by one, like the GyverTwink app. Improvements over the app: the
+  frame is averaged after the LED settles, the spot centre is found with
+  sub-cell accuracy, an exposure drift is compensated, LEDs that were not seen
+  or look like reflections can be re-shot, the rest are filled in from their
+  neighbours, and the result is shown before it is saved.
+  A copy of the map is kept in Home Assistant and can be written back after a
+  reflash; cancelling a calibration restores it.
+- **Effects.** Favourite, speed and scale of all 22 effects, with a 30 s preview.
+  Stock firmware reports the parameters of an effect only while it is shown.
+- **Garland.** LED count, firmware and MAC.
+
+The camera needs HTTPS: open Home Assistant by its `https://` address (the
+Home Assistant app on iPhone works). Calibrate in a dark room with the phone on
+a stand.
 
 ## Firmware 1.3
 

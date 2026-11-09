@@ -1,4 +1,7 @@
-"""Number platform: switch period, off timer, LED count, effect speed/scale."""
+"""Number platform: switch period, off timer, effect speed/scale.
+
+The LED count is set once, in the GyverTwink panel.
+"""
 
 from __future__ import annotations
 
@@ -9,17 +12,15 @@ from homeassistant.components.number import (
     NumberEntityDescription,
     NumberMode,
 )
-from homeassistant.const import EntityCategory, UnitOfTime
+from homeassistant.const import UnitOfTime
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 
 from .coordinator import GyverTwinkConfigEntry, GyverTwinkCoordinator
 from .entity import GyverTwinkEntity, GyverTwinkExtEntity
 from .protocol import (
-    LED_MAX,
     OFF_TIMER_MAX,
     OFF_TIMER_MIN,
-    SET_LED_COUNT,
     SET_OFF_TIMER_MINUTES,
     SET_SWITCH_PERIOD,
     SWITCH_PERIOD_MAX,
@@ -56,17 +57,6 @@ SETTING_NUMBERS = (
         native_step=1,
         native_unit_of_measurement=UnitOfTime.MINUTES,
         mode=NumberMode.BOX,
-    ),
-    SettingNumberDescription(
-        key="led_count",
-        sub=SET_LED_COUNT,
-        field="led_count",
-        native_min_value=1,
-        native_max_value=LED_MAX,
-        native_step=1,
-        mode=NumberMode.BOX,
-        entity_category=EntityCategory.CONFIG,
-        entity_registry_enabled_default=False,
     ),
 )
 
@@ -115,10 +105,7 @@ class SettingNumber(GyverTwinkEntity, NumberEntity):
     async def async_set_native_value(self, value: float) -> None:
         d = self.entity_description
         v = int(value)
-        if d.sub == SET_LED_COUNT:
-            await self.coordinator.client.set_value(d.sub, v // 100, v % 100)
-        else:
-            await self.coordinator.client.set_value(d.sub, v)
+        await self.coordinator.client.set_value(d.sub, v)
         self.coordinator.async_set_optimistic(**{d.field: v})
         await self.coordinator.async_request_refresh()
 

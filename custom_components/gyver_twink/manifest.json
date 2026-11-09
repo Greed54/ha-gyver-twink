@@ -9,7 +9,10 @@
   ],
   "config_flow": true,
   "dependencies": [
-    "network"
+    "frontend",
+    "http",
+    "network",
+    "panel_custom"
   ],
   "documentation": "https://github.com/Greed54/ha-gyver-twink",
   "integration_type": "device",
@@ -19,7 +22,7 @@
     "custom_components.gyver_twink"
   ],
   "requirements": [],
-  "version": "2.0.1",
+  "version": "2.1.0b2",
   "zeroconf": [
     "_gyvertwink._udp.local."
   ]
