@@ -119,15 +119,15 @@ bool calibF = false;
 byte curEff = 0;
 byte forceEff = 0;
 
-#undef DEBUG     // v1.3: имя занято ядром ESP8266
-#undef DEBUGLN
+// v1.3: макросы определены один раз (конвертер .ino в PlatformIO
+// просматривает обе ветки #ifdef и ругался на переопределение)
 #ifdef DEBUG_SERIAL_GT
-#define DEBUGLN(x) Serial.println(x)
-#define DEBUG(x) Serial.print(x)
+constexpr bool GT_DEBUG = true;
 #else
-#define DEBUGLN(x)
-#define DEBUG(x)
+constexpr bool GT_DEBUG = false;
 #endif
+#define DEBUGLN(x) do { if (GT_DEBUG) Serial.println(x); } while (0)
+#define DEBUG(x) do { if (GT_DEBUG) Serial.print(x); } while (0)
 
 // ================== SETUP ==================
 void setup() {
