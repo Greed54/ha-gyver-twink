@@ -22,7 +22,7 @@
     "custom_components.gyver_twink"
   ],
   "requirements": [],
-  "version": "2.1.0b2",
+  "version": "2.1.0",
   "zeroconf": [
     "_gyvertwink._udp.local."
   ]
