@@ -30,6 +30,9 @@ jobs:
           python-version: "3.13"
       - run: pip install platformio
       - run: pio run -d firmware -e d1_mini
+        env:
+          # elf2bin.py from the ESP8266 core has invalid escapes in regexes
+          PYTHONWARNINGS: ignore::SyntaxWarning
       - uses: actions/upload-artifact@v7
         with:
           name: firmware
