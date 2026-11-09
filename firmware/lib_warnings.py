@@ -13,3 +13,17 @@ dirs += [os.path.join(lib_dir, name, "src") for name in sorted(os.listdir(lib_di
 
 for path in dirs:
     env.Append(CCFLAGS=["-isystem", path])
+
+# The libraries' own sources include these headers with quotes (found next
+# to the .cpp, not via -isystem), so compile third-party sources with -w.
+third_party = [os.path.realpath(p) for p in (env.subst("$PROJECT_LIBDEPS_DIR"), lib_dir)]
+
+
+def quiet_third_party(env, node):
+    src = os.path.realpath(node.srcnode().get_abspath())
+    if any(src.startswith(root + os.sep) for root in third_party):
+        return env.Object(node, CCFLAGS=env["CCFLAGS"] + ["-w"])
+    return node
+
+
+env.AddBuildMiddleware(quiet_third_party)
