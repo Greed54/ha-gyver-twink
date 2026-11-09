@@ -1,7 +1,6 @@
 void effects() {
   static Timer effTmr(30);
   static uint16_t countP = 0;
-  static byte countSkip = 0;
   static byte prevEff = 255;
   static byte fadeCount = 0;
 

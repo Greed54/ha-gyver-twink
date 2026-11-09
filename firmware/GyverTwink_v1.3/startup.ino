@@ -50,7 +50,6 @@ void setupSTA() {
   WiFi.mode(WIFI_STA);
   WiFi.begin(portalCfg.SSID, portalCfg.pass);
   uint32_t tmr = millis();
-  bool state = false;
   while (millis() - tmr < 15000) {
     if (WiFi.status() == WL_CONNECTED) {
       fadeBlink(CRGB::Green);

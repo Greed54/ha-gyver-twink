@@ -119,6 +119,8 @@ bool calibF = false;
 byte curEff = 0;
 byte forceEff = 0;
 
+#undef DEBUG     // v1.3: имя занято ядром ESP8266
+#undef DEBUGLN
 #ifdef DEBUG_SERIAL_GT
 #define DEBUGLN(x) Serial.println(x)
 #define DEBUG(x) Serial.print(x)
