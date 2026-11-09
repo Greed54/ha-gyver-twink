@@ -96,9 +96,6 @@
       "off_timer_minutes": {
         "name": "Off timer duration"
       },
-      "led_count": {
-        "name": "LED count"
-      },
       "effect_speed": {
         "name": "Effect speed"
       },

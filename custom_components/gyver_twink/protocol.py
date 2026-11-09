@@ -37,6 +37,14 @@ SET_OFF_TIMER_MINUTES = 8
 
 # Sub-commands of CMD_EFFECT_PREVIEW (act on the previewed effect)
 PREVIEW_SELECT = 0
+PREVIEW_FAVORITE = 1
+PREVIEW_SCALE = 2
+PREVIEW_SPEED = 3
+
+# Sub-commands of CMD_CALIBRATION
+CALIB_START = 0  # clear the strip, enter calibration mode
+CALIB_LED = 1  # {1, n/100, n%100, x, y}: store x,y of LED n-1, light LED n
+CALIB_FINISH = 2  # save coordinates to EEPROM, leave calibration mode
 
 LED_MAX = 500
 SWITCH_PERIOD_MIN = 1

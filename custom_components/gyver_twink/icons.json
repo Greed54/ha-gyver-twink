@@ -32,9 +32,6 @@
       "off_timer_minutes": {
         "default": "mdi:timer-cog-outline"
       },
-      "led_count": {
-        "default": "mdi:led-strip-variant"
-      },
       "effect_speed": {
         "default": "mdi:speedometer"
       },

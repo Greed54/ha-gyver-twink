@@ -10,10 +10,14 @@ from homeassistant.exceptions import ConfigEntryNotReady
 from homeassistant.helpers import config_validation as cv
 from homeassistant.helpers.device_registry import format_mac
 from homeassistant.helpers.typing import ConfigType
+from homeassistant.loader import async_get_integration
 
+from . import websocket_api
 from .api import GyverTwinkClient
+from .calibration import async_remove_map
 from .const import DOMAIN
 from .coordinator import GyverTwinkConfigEntry, GyverTwinkCoordinator
+from .panel import async_setup_panel
 from .services import async_setup_services
 
 _LOGGER = logging.getLogger(__name__)
@@ -24,6 +28,9 @@ CONFIG_SCHEMA = cv.config_entry_only_config_schema(DOMAIN)
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool:
     async_setup_services(hass)
+    websocket_api.async_register(hass)
+    integration = await async_get_integration(hass, DOMAIN)
+    await async_setup_panel(hass, str(integration.version))
     return True
 
 
@@ -51,6 +58,11 @@ async def async_setup_entry(hass: HomeAssistant, entry: GyverTwinkConfigEntry) -
 
 async def async_unload_entry(hass: HomeAssistant, entry: GyverTwinkConfigEntry) -> bool:
     return await hass.config_entries.async_unload_platforms(entry, PLATFORMS)
+
+
+async def async_remove_entry(hass: HomeAssistant, entry: GyverTwinkConfigEntry) -> None:
+    """Drop the calibration map kept for this garland."""
+    await async_remove_map(hass, entry.entry_id)
 
 
 async def async_migrate_entry(hass: HomeAssistant, entry: GyverTwinkConfigEntry) -> bool:
